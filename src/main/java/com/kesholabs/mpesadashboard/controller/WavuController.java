@@ -27,7 +27,7 @@ public class WavuController {
     SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
     String formattedDate = formatter.format(todaysDate);
 
-    @GetMapping("/home")
+    @GetMapping("/")
     public ModelAndView setView(){
         ModelAndView mv = new ModelAndView("Home/index");
         mv.addObject("allusers", wavuUsersDaoImpl.getAllWavuUsers());
