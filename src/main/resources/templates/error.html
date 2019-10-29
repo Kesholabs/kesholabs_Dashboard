@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.w3.org/1999/xhtml">
-<head  data-th-replace="/fragment/css_imports :: css-content"></head>
+<head  data-th-replace="fragment/css_imports :: css-content"></head>
 <body class="hold-transition skin-blue sidebar-mini">
 
 <div class="wrapper">
 
     <!-- header content -->
-    <div data-th-replace="/fragment/header :: header-content"></div>
+    <div data-th-replace="fragment/header :: header-content"></div>
     <!-- /header content -->
 
     <!-- Left side column. contains the logo and sidebar -->
     <!-- sidebar menu -->
-    <div data-th-replace="/fragment/sidemenu :: left_sidemenu-content"></div>
+    <div data-th-replace="fragment/sidemenu :: left_sidemenu-content"></div>
     <!-- /sidebar menu -->
 
     <!-- Content Wrapper. Contains page content -->
@@ -36,13 +36,12 @@
                 <div class="error-content">
                     <h3><i class="fa fa-warning text-yellow" th:text="${'Oops!. There seems to be a problem with the page you requested: ' + path}"></i></h3>
 
-                    <p th:text="${'Details: ' + message}"></p>
-                    <p th:text="${'Exception: ' + exception}"></p>
-                    <p th:text="${'Errors: ' + errors}"></p>
-                    <p th:text="${'Trace: ' + trace}"></p>
-                    <p th:text="${'Path: ' + path}"></p>
+                    <h1 th:text="${'Details: ' + message}"></h1>
+                    <h1 th:text="${'Exception: ' + exception}"></h1>
+                    <h1 th:text="${'Errors: ' + errors}"></h1>
+                    <h1 th:text="${'Trace: ' + trace}"></h1>
+                    <h1 th:text="${'Path: ' + path}"></h1>
                     <p>Meanwhile, you may <a href="../../index.html">return to dashboard</a></p>
-
                 </div>
                 <!-- /.error-content -->
             </div>
@@ -53,12 +52,12 @@
     <!-- /.content-wrapper -->
 
     <!-- footer content -->
-    <div data-th-replace="/fragment/footer :: footer-content"></div>
+    <div data-th-replace="fragment/footer :: footer-content"></div>
     <!-- /footer content -->
 
     <!-- Right side column. contains the logo and sidebar -->
     <!-- Control Sidebar -->
-    <div data-th-replace="/fragment/right_sidemenu :: right_sidemenu-content"></div>
+    <div data-th-replace="fragment/right_sidemenu :: right_sidemenu-content"></div>
     <!-- /.control-sidebar -->
 
     <!-- Add the sidebar's background. This div must be placed immediately after the control sidebar -->
@@ -66,6 +65,6 @@
 </div>
 <!-- ./wrapper -->
 
-<div data-th-replace="/fragment/js_imports :: js-content"></div>
+<div data-th-replace="fragment/js_imports :: js-content"></div>
 </body>
 </html>
