@@ -2,7 +2,21 @@ pipeline {
     agent {
        	label 'pb-webapp-slave'
     }
+
+    tools {
+        maven 'Maven 3.3.9'
+        jdk 'jdk8'
+    }
+
     stages {
+        stage ('Initialize') {
+            steps {
+                sh '''
+                    echo "PATH = ${PATH}"
+                    echo "M2_HOME = ${M2_HOME}"
+                '''
+            }
+        }
 
         stage('SCM') {
             steps {
@@ -16,6 +30,11 @@ pipeline {
               echo 'Building..'
               sh 'su mvn clean && mvn build'
           }
+          post {
+               success {
+                   junit 'target/surefire-reports/**/*.xml'
+               }
+           }
       }
 
       stage('Test') {
