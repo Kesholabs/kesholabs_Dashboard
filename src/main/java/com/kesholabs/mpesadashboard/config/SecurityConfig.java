@@ -47,7 +47,8 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter {
 
                 .antMatchers("/","/signup/**","/signin/**","/forgot/**","/reset/**","/dashboard").permitAll()
                 .antMatchers(CLASSPATH_RESOURCE_LOCATIONS).permitAll()
-                .antMatchers("/dashboard","/mpesa").hasRole("ADMIN")
+                .antMatchers("/mpesa").hasRole("ADMIN")
+//                .antMatchers("/dashboard","/mpesa").hasRole("ADMIN")
 
                 .and()
                 .formLogin()
