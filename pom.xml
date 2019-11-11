@@ -11,8 +11,8 @@
     <groupId>com.kesholabs</groupId>
     <artifactId>mpesadashboard</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>mpesadashboard</name>
-    <description>Mpesa Dashboard for all application</description>
+    <name>kesholabsdashboard</name>
+    <description>Kesholabs Dashboard for all application</description>
 
     <properties>
         <java.version>1.8</java.version>
