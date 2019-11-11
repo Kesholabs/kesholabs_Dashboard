@@ -1,6 +1,6 @@
 pipeline {
     agent {
-       	label 'master'
+       	label 'pb-webapp-slave'
     }
 
     tools {
@@ -20,8 +20,10 @@ pipeline {
 
         stage('SCM') {
             steps {
-                echo 'pulling from git'
-                git credentialsId: 'github', url: 'https://github.com/Kesholabs/kesholabs_Dashboard.git'
+            sh '''
+              echo 'pulling from git'
+              git pull 'github', url: 'https://github.com/Kesholabs/kesholabs_Dashboard.git'
+            '''
             }
         }
 
