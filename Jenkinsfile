@@ -1,6 +1,6 @@
 pipeline {
     agent {
-       	label 'pb-webapp-slave'
+       	label 'master'
     }
 
     tools {

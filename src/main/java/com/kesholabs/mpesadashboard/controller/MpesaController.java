@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -18,7 +17,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Controller
-public class WavuController {
+public class MpesaController {
 
     @Autowired
     WavuUsersDaoImpl wavuUsersDaoImpl;
@@ -37,7 +36,7 @@ public class WavuController {
     String formattedDate = formatter.format(todaysDate);
 
 
-    @RequestMapping(value = {"/dashboard"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/mpesa"}, method = RequestMethod.GET)
     public ModelAndView dashboard() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Dashboard_UsersEntity user = userService.findUserByEmail(auth.getName());
@@ -61,5 +60,4 @@ public class WavuController {
         mv.setViewName("dashboard");
         return mv;
     }
-
 }

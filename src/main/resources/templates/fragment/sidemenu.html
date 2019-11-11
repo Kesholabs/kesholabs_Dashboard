@@ -1,4 +1,4 @@
-<aside class="main-sidebar" data-th-fragment="left_sidemenu-content">
+<aside class="main-sidebar" data-th-fragment="left_sidemenu-content" xmlns:th="http://www.w3.org/1999/xhtml">
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
         <!-- Sidebar user panel -->
@@ -34,7 +34,7 @@
                 </a>
                 <ul class="treeview-menu">
                     <li class="active"><a href="index.html"><i class="fa fa-circle-o"></i> Wavu</a></li>
-                    <li><a href="index2.html"><i class="fa fa-circle-o"></i> Mpesa</a></li>
+                    <li><a th:href="@{/mpesa}"><i class="fa fa-circle-o"></i> Mpesa</a></li>
                 </ul>
             </li>
             <li><a href="https://adminlte.io/docs"><i class="fa fa-book"></i> <span>Documentation</span></a></li>

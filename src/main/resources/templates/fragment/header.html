@@ -1,4 +1,4 @@
-<header class="main-header" data-th-fragment="header-content">
+<header class="main-header" data-th-fragment="header-content" xmlns:th="http://www.w3.org/1999/xhtml">
     <!-- Logo -->
     <a href="index2.html" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
@@ -223,9 +223,8 @@
                         <li class="user-header">
                             <img src="static/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
-                            <p>
-                                Alexander Pierce - Web Developer
-                                <small>Member since Nov. 2012</small>
+                            <p th:text="${fullName}">
+                                <small th:text="${'Member since ' + date}"></small>
                             </p>
                         </li>
                         <!-- Menu Body -->
