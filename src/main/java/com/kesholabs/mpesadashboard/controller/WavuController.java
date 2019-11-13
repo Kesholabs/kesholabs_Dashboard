@@ -54,11 +54,10 @@ public class WavuController {
         mv.addObject("wavuspent",account_wavuDaoImpl.getWavuSpent());
         mv.addObject("aionbalance",account_aionDaoImpl.getAionBalance());
         mv.addObject("aionspent",account_aionDaoImpl.getAionSpent());
-        mv.addObject("currentUser", user);
-        mv.addObject("fullName", "Welcome " + user.getUsername());
-        mv.addObject("date", user.getDate());
+//        mv.addObject("currentUser", user);
+//        mv.addObject("fullName", "Welcome "+user.getUsername());
+//        mv.addObject("date", user.getDate());
         mv.addObject("adminMessage", "Content Available Only for Users with Admin Role");
-        mv.setViewName("dashboard");
         return mv;
     }
 

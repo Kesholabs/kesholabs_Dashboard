@@ -43,6 +43,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     }
 
     public void saveUser(Dashboard_UsersEntity user) {
+        logger.info("Creating user");
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         user.setActive(true);
         Dashboard_RolesEntity userRole = dashboard_rolesRepo.findByRole("ADMIN");

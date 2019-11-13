@@ -12,7 +12,9 @@
         <p class="login-box-msg">Register a new membership</p>
 
         <form th:action="@{/signup}" th:object="${user}" method="post">
-            <span class="alert-success" th:text="${successMessage}"></span>
+            <div th:if = "${successMessage != null }" class="text-center" style="margin: 10px">
+                <span class="alert alert-success" th:text="${successMessage}"></span>
+            </div>
 
             <div class="form-group has-feedback">
                 <input type="text" class="form-control" placeholder="Full name" th:field="*{fullname}">
@@ -48,20 +50,6 @@
 </div>
 <!-- /.register-box -->
 
-<!-- jQuery 3 -->
-<script src="static/bower_components/jquery/dist/jquery.min.js"></script>
-<!-- Bootstrap 3.3.7 -->
-<script src="static/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<!-- iCheck -->
-<script src="static/plugins/iCheck/icheck.min.js"></script>
-<script>
-    $(function () {
-        $('input').iCheck({
-            checkboxClass: 'icheckbox_square-blue',
-            radioClass: 'iradio_square-blue',
-            increaseArea: '20%' /* optional */
-        });
-    });
-</script>
+<div data-th-replace="fragment/js_imports :: js-content"></div>
 </body>
 </html>
