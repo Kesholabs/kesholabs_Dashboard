@@ -34,6 +34,16 @@ public class WavuUsersEntity {
     String referralid;
     String password;
     Date updatedAt;
-    Date creatededAt;
+    String creatededAt;
     String phoneNumber;
+    int no_Referrals;
+
+
+    public int getNo_Referrals() {
+        return successfulReferrals.size();
+    }
+
+    public void setNo_Referrals(int no_Referrals) {
+        this.no_Referrals = no_Referrals;
+    }
 }

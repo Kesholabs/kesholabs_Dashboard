@@ -5558,3 +5558,9 @@ hr {
     white-space: normal !important;
   }
 }
+
+.dataTables_wrapper {
+  position: relative;
+  clear: both;
+  zoom: 1;
+}

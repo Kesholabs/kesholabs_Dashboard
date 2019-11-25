@@ -1,22 +1,30 @@
 package com.kesholabs.mpesadashboard.dao.impl;
 
-import com.kesholabs.mpesadashboard.dao.WavuUsersDao;
+import com.kesholabs.mpesadashboard.dao.Wavu_UsersDao;
 import com.kesholabs.mpesadashboard.entity.WavuUsersEntity;
 import com.kesholabs.mpesadashboard.repo.WavuUsersRepo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class WavuUsersDaoImpl implements WavuUsersDao {
+public class WavuUsersDaoImpl implements Wavu_UsersDao {
 
     Logger log = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     WavuUsersRepo wavuUsersRepo;
+
+    @Override
+    public Page<WavuUsersEntity> allUsers(Pageable firstNo) {
+        return wavuUsersRepo.findAll(firstNo);
+    }
 
     @Override
     public int getAllWavuUsers() {

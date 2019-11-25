@@ -18,6 +18,6 @@ public class Account_AionDaoImpl implements Account_AionDao {
 
     @Override
     public double getAionSpent() {
-        return account_aionsRepo.findByTokenName("aion").getTotalAionIn();
+        return account_aionsRepo.findByTokenName("aion").getTotalAionOut();
     }
 }

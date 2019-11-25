@@ -42,7 +42,7 @@ public class AuthController {
 
     @RequestMapping(value = "/signup", method = RequestMethod.POST)
     public ModelAndView createNewUser(@Valid @ModelAttribute("user") Dashboard_UsersEntity user, BindingResult bindingResult) {
-        ModelAndView mv = new ModelAndView();
+        ModelAndView mv = new ModelAndView("Register/signup");
         String newUser = String.format("\n Name :%s,\n username :%s,\n email :%s,\n password :%s",user.getFullname(),user.getUsername(),user.getEmail(),user.getPassword());
         logger.info("New user info "+newUser);
 
@@ -56,14 +56,12 @@ public class AuthController {
 
             if (bindingResult.hasErrors()) {
                 mv.addObject("errorMessage", bindingResult.getAllErrors());
-                mv.setViewName("Register/signup");
                 return mv;
             }
 
             userService.saveUser(user);
             mv.addObject("successMessage", "User has been registered successfully");
             mv.addObject("user", user);
-            mv.setViewName("Register/signup");
             return mv;
         }catch (Exception ex){
             logger.error(ex.getMessage(), ex);

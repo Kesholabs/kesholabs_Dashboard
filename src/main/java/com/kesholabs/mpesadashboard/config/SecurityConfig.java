@@ -45,9 +45,9 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
 
-                .antMatchers("/","/signup/**","/signin/**","/forgot/**","/reset/**","/dashboard/**").permitAll()
+                .antMatchers("/","/signup/**","/signin/**","/forgot/**","/reset/**").permitAll()
                 .antMatchers(CLASSPATH_RESOURCE_LOCATIONS).permitAll()
-                .antMatchers("/mpesa").hasRole("ADMIN")
+                .antMatchers("/dashboard/**","/mpesa").hasRole("ADMIN")
 //                .antMatchers("/dashboard","/mpesa").hasRole("ADMIN")
 
                 .and()
