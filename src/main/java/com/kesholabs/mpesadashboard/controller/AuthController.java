@@ -27,8 +27,7 @@ public class AuthController {
     @RequestMapping(value = {"/","/signin"}, method = RequestMethod.GET)
     public ModelAndView login(){
         logger.debug("Login process");
-        ModelAndView mv = new ModelAndView("Login/login");
-        return mv;
+        return new ModelAndView("Login/login");
     }
 
     @RequestMapping(value = "/signup", method = RequestMethod.GET)

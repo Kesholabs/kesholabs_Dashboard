@@ -17,9 +17,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 @Controller
 public class WavuController {
@@ -37,7 +39,7 @@ public class WavuController {
     private CustomUserDetailsService userService;
 
     Date todaysDate = new Date();
-    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+    SimpleDateFormat formatter = new SimpleDateFormat( "yyyy-MM-dd", Locale.US);
     String formattedDate = formatter.format(todaysDate);
 
 
@@ -54,10 +56,10 @@ public class WavuController {
         mv.addObject("getallverifiedphone",wavuUsersDaoImpl.getAllVerifiedPhone(true));
         mv.addObject("getallunverifiedemail",wavuUsersDaoImpl.getAllVerifiedEmail(false));
         mv.addObject("getallunverifiedphone",wavuUsersDaoImpl.getAllVerifiedPhone(false));
-        mv.addObject("wavubalance",account_wavuDaoImpl.getWavuBalance());
-        mv.addObject("wavuspent",account_wavuDaoImpl.getWavuSpent());
-        mv.addObject("aionbalance",account_aionDaoImpl.getAionBalance());
-        mv.addObject("aionspent",account_aionDaoImpl.getAionSpent());
+        mv.addObject("wavubalance",formatNumber(account_wavuDaoImpl.getWavuBalance()));
+        mv.addObject("wavuspent",formatNumber(account_wavuDaoImpl.getWavuSpent()));
+        mv.addObject("aionbalance",formatNumber(account_aionDaoImpl.getAionBalance()));
+        mv.addObject("aionspent",formatNumber(account_aionDaoImpl.getAionSpent()));
 //        mv.addObject("currentUser", user);
 //        mv.addObject("fullName", "Welcome "+user.getUsername());
 //        mv.addObject("date", user.getDate());
@@ -80,6 +82,13 @@ public class WavuController {
         Page<WavuUsersEntity> wavuUsersEntities = wavuUsersDaoImpl.allUsers(pageNo);
         ajaxModelRes.setData(wavuUsersEntities);
         return ajaxModelRes;
+    }
+
+    String formatNumber(double amount){
+        Locale locale = new Locale("en", "US");
+        NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(locale);
+        System.out.println(currencyFormatter.format(amount));
+        return currencyFormatter.format(amount);
     }
 
 }

@@ -39,7 +39,8 @@ public class WavuUsersDaoImpl implements Wavu_UsersDao {
 
     @Override
     public int getNewWavuUsers(String date) {
-        return wavuUsersRepo.countByCreatededAt(date);
+        log.info("Date String "+date);
+        return wavuUsersRepo.findWavuUsersEntityByRegexpCreatededAt("/.*"+date+".*/").size();
     }
 
     @Override
