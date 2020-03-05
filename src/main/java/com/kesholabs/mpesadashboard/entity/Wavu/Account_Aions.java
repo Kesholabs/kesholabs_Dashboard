@@ -1,4 +1,4 @@
-package com.kesholabs.mpesadashboard.entity;
+package com.kesholabs.mpesadashboard.entity.Wavu;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

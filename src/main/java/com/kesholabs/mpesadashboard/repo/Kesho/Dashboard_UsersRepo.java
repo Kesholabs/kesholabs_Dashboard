@@ -1,6 +1,6 @@
-package com.kesholabs.mpesadashboard.repo;
+package com.kesholabs.mpesadashboard.repo.Kesho;
 
-import com.kesholabs.mpesadashboard.entity.Dashboard_UsersEntity;
+import com.kesholabs.mpesadashboard.entity.Kesho.Dashboard_UsersEntity;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 

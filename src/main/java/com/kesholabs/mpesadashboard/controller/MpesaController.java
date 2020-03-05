@@ -3,7 +3,7 @@ package com.kesholabs.mpesadashboard.controller;
 import com.kesholabs.mpesadashboard.dao.impl.Account_AionDaoImpl;
 import com.kesholabs.mpesadashboard.dao.impl.Account_WavuDaoImpl;
 import com.kesholabs.mpesadashboard.dao.impl.WavuUsersDaoImpl;
-import com.kesholabs.mpesadashboard.entity.Dashboard_UsersEntity;
+import com.kesholabs.mpesadashboard.entity.Kesho.Dashboard_UsersEntity;
 import com.kesholabs.mpesadashboard.service.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -17,6 +17,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Controller
+@RequestMapping(path = "/mpesa/dashboard")
 public class MpesaController {
 
     @Autowired
@@ -36,11 +37,11 @@ public class MpesaController {
     String formattedDate = formatter.format(todaysDate);
 
 
-    @RequestMapping(value = {"/mpesa"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"","/"}, method = RequestMethod.GET)
     public ModelAndView dashboard() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Dashboard_UsersEntity user = userService.findUserByEmail(auth.getName());
-        ModelAndView mv = new ModelAndView("Home/index");
+        ModelAndView mv = new ModelAndView("Mpesa/mpesa");
         mv.addObject("allusers", wavuUsersDaoImpl.getAllWavuUsers());
         mv.addObject("newusers", wavuUsersDaoImpl.getNewWavuUsers(formattedDate));
         mv.addObject("getallverified",wavuUsersDaoImpl.getAllVerifiedUsers());
@@ -57,7 +58,6 @@ public class MpesaController {
         mv.addObject("fullName", "Welcome " + user.getUsername());
         mv.addObject("date", user.getDate());
         mv.addObject("adminMessage", "Content Available Only for Users with Admin Role");
-        mv.setViewName("dashboard");
         return mv;
     }
 }

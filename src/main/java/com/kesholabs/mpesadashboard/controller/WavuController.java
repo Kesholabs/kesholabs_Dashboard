@@ -3,8 +3,8 @@ package com.kesholabs.mpesadashboard.controller;
 import com.kesholabs.mpesadashboard.dao.impl.Account_AionDaoImpl;
 import com.kesholabs.mpesadashboard.dao.impl.Account_WavuDaoImpl;
 import com.kesholabs.mpesadashboard.dao.impl.WavuUsersDaoImpl;
-import com.kesholabs.mpesadashboard.entity.Dashboard_UsersEntity;
-import com.kesholabs.mpesadashboard.entity.WavuUsersEntity;
+import com.kesholabs.mpesadashboard.entity.Kesho.Dashboard_UsersEntity;
+import com.kesholabs.mpesadashboard.entity.Wavu.WavuUsersEntity;
 import com.kesholabs.mpesadashboard.models.response.AjaxModelRes;
 import com.kesholabs.mpesadashboard.service.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,10 +20,10 @@ import org.springframework.web.servlet.ModelAndView;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
 
 @Controller
+@RequestMapping(path = "/wavu/dashboard")
 public class WavuController {
 
     @Autowired
@@ -43,7 +43,7 @@ public class WavuController {
     String formattedDate = formatter.format(todaysDate);
 
 
-    @RequestMapping(value = {"/dashboard"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"","/"}, method = RequestMethod.GET)
     public ModelAndView dashboard() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Dashboard_UsersEntity user = userService.findUserByEmail(auth.getName());

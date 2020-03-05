@@ -20,12 +20,12 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Wavu Dashboard
+                Ticket Dashboard
                 <small>Control panel</small>
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li class="active">Wavu Dashboard</li>
+                <li class="active">Ticket Dashboard</li>
             </ol>
         </section>
 
@@ -39,12 +39,12 @@
                         <div class="inner">
                             <h3 th:text="${allusers}"></h3>
 
-                            <p>All Users</p>
+                            <p>Generated Tickets</p>
                         </div>
                         <div class="icon">
                             <i class="ion ion-bag"></i>
                         </div>
-                        <a th:href="@{/wavu/allusers}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                        <a th:href="@{/allusers}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <!-- ./col -->
@@ -54,7 +54,7 @@
                         <div class="inner">
                             <h3 th:text="${newusers}"><sup style="font-size: 20px"></sup></h3>
 
-                            <p>Newly Registered</p>
+                            <p>Ungenerated Tickets</p>
                         </div>
                         <div class="icon">
                             <i class="ion ion-stats-bars"></i>
@@ -69,7 +69,7 @@
                         <div class="inner">
                             <h3 th:text="${getallverified}"></h3>
 
-                            <p>Active Users</p>
+                            <p>Mpesa Payments</p>
                         </div>
                         <div class="icon">
                             <i class="ion ion-person-add"></i>
@@ -84,7 +84,7 @@
                         <div class="inner">
                             <h3 th:text="${getallunverified}"></h3>
 
-                            <p>Inactive Users</p>
+                            <p>Visa Payments</p>
                         </div>
                         <div class="icon">
                             <i class="ion ion-pie-graph"></i>
@@ -104,7 +104,7 @@
                         <div class="inner">
                             <h3 th:text="${getallverifiedphone}"></h3>
 
-                            <p>Verified Phone</p>
+                            <p>Failed Mpesa Payments</p>
                         </div>
                         <div class="icon">
                             <i class="ion ion-bag"></i>
@@ -119,7 +119,7 @@
                         <div class="inner">
                             <h3 th:text="${getallverifiedemail}"><sup style="font-size: 20px"></sup></h3>
 
-                            <p>Verified Email</p>
+                            <p>Failed Visa Payment</p>
                         </div>
                         <div class="icon">
                             <i class="ion ion-stats-bars"></i>
@@ -134,7 +134,7 @@
                         <div class="inner">
                             <h3 th:text="${getallunverifiedemail}"></h3>
 
-                            <p>Unverified Email</p>
+                            <p>All Deliverd Tickets</p>
                         </div>
                         <div class="icon">
                             <i class="ion ion-person-add"></i>
@@ -149,7 +149,7 @@
                         <div class="inner">
                             <h3 th:text="${getallunverifiedphone}"></h3>
 
-                            <p>Unverified Phone</p>
+                            <p>All Undelivered Tickets</p>
                         </div>
                         <div class="icon">
                             <i class="ion ion-pie-graph"></i>
@@ -160,92 +160,6 @@
                 <!-- ./col -->
             </div>
             <!-- /.row -->
-
-            <!-- 3st Row -->
-            <div class="row">
-                <div class="col-lg-3 col-xs-6">
-                    <!-- small box -->
-                    <div class="small-box bg-aqua">
-                        <div class="inner">
-                            <h3 th:text="${wavubalance}"></h3>
-
-                            <p>Total Wavu</p>
-                        </div>
-                        <div class="icon">
-                            <i class="ion ion-bag"></i>
-                        </div>
-                        <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-                    </div>
-                </div>
-                <!-- ./col -->
-                <div class="col-lg-3 col-xs-6">
-                    <!-- small box -->
-                    <div class="small-box bg-green">
-                        <div class="inner">
-                            <h3 th:text="${aionbalance}"><sup style="font-size: 20px"></sup></h3>
-
-                            <p>Total Aion</p>
-                        </div>
-                        <div class="icon">
-                            <i class="ion ion-stats-bars"></i>
-                        </div>
-                        <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-                    </div>
-                </div>
-                <!-- ./col -->
-                <div class="col-lg-3 col-xs-6">
-                    <!-- small box -->
-                    <div class="small-box bg-yellow">
-                        <div class="inner">
-                            <h3 th:text="${wavuspent}"></h3>
-
-                            <p>Issued Wavu</p>
-                        </div>
-                        <div class="icon">
-                            <i class="ion ion-person-add"></i>
-                        </div>
-                        <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-                    </div>
-                </div>
-                <!-- ./col -->
-                <div class="col-lg-3 col-xs-6">
-                    <!-- small box -->
-                    <div class="small-box bg-red">
-                        <div class="inner">
-                            <h3 th:text="${aionspent}"></h3>
-
-                            <p>Issued Aion</p>
-                        </div>
-                        <div class="icon">
-                            <i class="ion ion-pie-graph"></i>
-                        </div>
-                        <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-                    </div>
-                </div>
-                <!-- ./col -->
-            </div>
-            <!-- /.row -->
-
-            <!-- 4st Row -->
-<!--            <div class="row">-->
-<!--                <div class="col-lg-3 col-xs-6">-->
-<!--                    &lt;!&ndash; small box &ndash;&gt;-->
-<!--                    <div class="small-box bg-aqua">-->
-<!--                        <div class="inner">-->
-<!--                            <h3 th:text="${allusers}"></h3>-->
-
-<!--                            <p>No of Referrals</p>-->
-<!--                        </div>-->
-<!--                        <div class="icon">-->
-<!--                            <i class="ion ion-bag"></i>-->
-<!--                        </div>-->
-<!--                        <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                &lt;!&ndash; ./col &ndash;&gt;-->
-<!--            </div>-->
-            <!-- /.row -->
-
         </section>
         <!-- /.content -->
     </div>

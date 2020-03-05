@@ -12,25 +12,40 @@
         <p class="login-box-msg">Register a new membership</p>
 
         <form th:action="@{/signup}" th:object="${user}" method="post">
-            <div th:if = "${successMessage != null }" class="text-center" style="margin: 10px">
+            <div th:if = "${successMessage != null }" class="text-center" style="margin-bottom: 30px">
                 <span class="alert alert-success" th:text="${successMessage}"></span>
             </div>
 
             <div class="form-group has-feedback">
                 <input type="text" class="form-control" placeholder="Full name" th:field="*{fullname}">
                 <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                <p th:if="${#fields.hasErrors('fullname')}" th:errors="*{fullname}" class="label label-danger"></p>
             </div>
             <div class="form-group has-feedback">
                 <input type="text" class="form-control" placeholder="Username" th:field="*{username}">
                 <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="label label-danger"></p>
             </div>
             <div class="form-group has-feedback">
                 <input type="email" class="form-control" placeholder="Email" th:field="*{email}">
                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="label label-danger"></p>
             </div>
             <div class="form-group has-feedback">
                 <input type="password" class="form-control" placeholder="Password" th:field="*{password}">
                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="label label-danger"></p>
+            </div>
+            <div class="form-group has-feedback">
+                <select class="form-control" th:field="*{department}">
+                    <option value="" selected>Choose Department</option>
+                    <option th:value="ADMIN">admin</option>
+                    <option th:value="FINANCE">finance</option>
+                    <option th:value="DEVELOPER">developer</option>
+                    <option th:value="MARKET">marketing</option>
+                    <option th:value="SALES">sales</option>
+                </select>
+                <p th:if="${#fields.hasErrors('department')}" th:errors="*{department}" class="label label-danger"></p>
             </div>
 <!--            <div class="form-group has-feedback">-->
 <!--                <input type="password" class="form-control" placeholder="Retype password">-->

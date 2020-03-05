@@ -1,13 +1,12 @@
 package com.kesholabs.mpesadashboard.dao.impl;
 
 import com.kesholabs.mpesadashboard.dao.Wavu_UsersDao;
-import com.kesholabs.mpesadashboard.entity.WavuUsersEntity;
-import com.kesholabs.mpesadashboard.repo.WavuUsersRepo;
+import com.kesholabs.mpesadashboard.entity.Wavu.WavuUsersEntity;
+import com.kesholabs.mpesadashboard.repo.Wavu.WavuUsersRepo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 

@@ -1,8 +1,7 @@
 package com.kesholabs.mpesadashboard.dao.impl;
 
 import com.kesholabs.mpesadashboard.dao.Account_WavuDao;
-import com.kesholabs.mpesadashboard.repo.Account_AionsRepo;
-import com.kesholabs.mpesadashboard.repo.Account_WavusRepo;
+import com.kesholabs.mpesadashboard.repo.Wavu.Account_WavusRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -45,17 +45,18 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
 
-                .antMatchers("/","/signup/**","/signin/**","/forgot/**","/reset/**","/dashboard/**").permitAll()
+                .antMatchers("/","/signup/**","/signin/**","/forgot/**","/reset/**").permitAll()
                 .antMatchers(CLASSPATH_RESOURCE_LOCATIONS).permitAll()
-                .antMatchers("/mpesa").hasRole("ADMIN")
-//                .antMatchers("/dashboard","/mpesa").hasRole("ADMIN")
+                .antMatchers("/wavu/dashboard/*").hasAnyRole("ADMIN","DEVELOPER")
+                .antMatchers("/mpesa/dashboard/*").hasAnyRole("ADMIN","DEVELOPER")
+                .antMatchers("/ticket/dashboard/*").hasAnyRole("ADMIN","MARKET")
 
                 .and()
                 .formLogin()
                 .loginPage("/signin").permitAll()
                 .failureUrl("/signin?error=loginError")
-                .defaultSuccessUrl("/dashboard")
-                .usernameParameter("email")
+                .defaultSuccessUrl("/default")
+                .usernameParameter("username")
                 .passwordParameter("password")
 
                 .and()
@@ -75,7 +76,7 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter {
         http.sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
                 .maximumSessions(2)
-                .expiredUrl("/session/admin?timeout=adminTimeout");
+                .expiredUrl("/session/expired?timeout=expired");
     }
 
     @Override

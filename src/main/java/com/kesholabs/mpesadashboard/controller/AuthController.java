@@ -1,11 +1,18 @@
 package com.kesholabs.mpesadashboard.controller;
 
 
-import com.kesholabs.mpesadashboard.entity.Dashboard_UsersEntity;
+import com.kesholabs.mpesadashboard.entity.Kesho.Dashboard_RolesEntity;
+import com.kesholabs.mpesadashboard.entity.Kesho.Dashboard_UsersEntity;
+import com.kesholabs.mpesadashboard.models.request.UserModel;
+import com.kesholabs.mpesadashboard.repo.Kesho.Dashboard_UsersRepo;
 import com.kesholabs.mpesadashboard.service.CustomUserDetailsService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,7 +22,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.util.Set;
 
 @Controller
 public class AuthController {
@@ -23,11 +32,16 @@ public class AuthController {
 
     @Autowired
     private CustomUserDetailsService userService;
+    @Autowired
+    Dashboard_UsersRepo dashboard_usersRepo;
 
     @RequestMapping(value = {"/","/signin"}, method = RequestMethod.GET)
     public ModelAndView login(){
+        ModelAndView mv = new ModelAndView("Login/login");
         logger.debug("Login process");
-        return new ModelAndView("Login/login");
+        UserModel userModel = new UserModel();
+        mv.addObject("user", userModel);
+        return mv;
     }
 
     @RequestMapping(value = "/signup", method = RequestMethod.GET)
@@ -42,11 +56,11 @@ public class AuthController {
     @RequestMapping(value = "/signup", method = RequestMethod.POST)
     public ModelAndView createNewUser(@Valid @ModelAttribute("user") Dashboard_UsersEntity user, BindingResult bindingResult) {
         ModelAndView mv = new ModelAndView("Register/signup");
-        String newUser = String.format("\n Name :%s,\n username :%s,\n email :%s,\n password :%s",user.getFullname(),user.getUsername(),user.getEmail(),user.getPassword());
-        logger.info("New user info "+newUser);
+        logger.info("New user info \n"+user.toString());
 
         try{
             Dashboard_UsersEntity userExists = userService.findUserByEmail(user.getEmail());
+//            logger.error("USER ALREADY EXIST "+userExists.toString());
             if (userExists != null) {
                 bindingResult
                         .rejectValue("email", "error.user",
@@ -54,6 +68,7 @@ public class AuthController {
             }
 
             if (bindingResult.hasErrors()) {
+                logger.error("ERRORS "+bindingResult.getAllErrors());
                 mv.addObject("errorMessage", bindingResult.getAllErrors());
                 return mv;
             }
@@ -68,6 +83,35 @@ public class AuthController {
         return mv;
     }
 
+    @RequestMapping("/default")
+    public String defaultAfterLogin() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (!(authentication instanceof AnonymousAuthenticationToken)) {
+            String currentUserName = authentication.getName();
+            Dashboard_UsersEntity user = dashboard_usersRepo.findByEmail(currentUserName);
+            logger.info("Username "+user.getUsername());
+
+            String forward = "redirect:/profile?username="+user.getUsername();
+
+            switch (user.getDepartment()){
+                case "ADMIN":
+                    return forward;
+                case "DEVELOPER":
+                    return forward;
+                case "FINANCE":
+                    return forward;
+                case "MARKET":
+                    return forward;
+                case "SALES":
+                    return forward;
+                default:
+                    return "Error/401";
+            }
+
+        }
+        return "Error/401";
+    }
+
     @GetMapping("/forgotpassword")
     public String forgot(){
         return "Forgot/forgot";
@@ -77,6 +121,7 @@ public class AuthController {
     public String resetPassword(){
         return "ResetPassword/reset";
     }
+
     // Login form with error
     @RequestMapping("/signin")
     public String loginError(Model model) {

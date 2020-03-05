@@ -1,34 +1,73 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.w3.org/1999/xhtml">
 <head  data-th-replace="/fragment/css_imports :: css-content"></head>
-<body class="content-wrapper">
+<body class="hold-transition skin-blue sidebar-mini">
 
-<!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper">
+<div class="wrapper">
 
-    <!-- Main content -->
-    <section class="login-box-body">
-        <div class="error-page">
-            <h2 class="headline text-yellow"> 401</h2>
+    <!-- header content -->
+    <div data-th-replace="/fragment/header :: header-content"></div>
+    <!-- /header content -->
 
-            <div class="error-content">
-                <h3><i class="fa fa-warning text-yellow"></i> Oops! Access Denied.</h3>
+    <!-- Left side column. contains the logo and sidebar -->
+    <!-- sidebar menu -->
+    <div data-th-replace="/fragment/sidemenu :: left_sidemenu-content"></div>
+    <!-- /sidebar menu -->
 
-                <p>
-                    User not allowed to access this page
-                    Meanwhile, you may <a href="../../index.html">return to dashboard</a> or try using the search form.
-                </p>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                404 Error Page
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li class="active">404 error</li>
+            </ol>
+        </section>
 
+        <!-- Main content -->
+        <section class="content">
+            <div class="error-page">
+                <h2 class="headline text-yellow"> 401</h2>
+
+                <div class="error-content">
+                    <h3><i class="fa fa-warning text-yellow"></i> Oops! Access Denied.</h3>
+                    <p>
+                        User not allowed to access this page
+                        Meanwhile, you may <a href="../../index.html">return to dashboard</a> or try using the search form.
+                    </p>
+
+                </div>
+                <!-- /.error-content -->
             </div>
-            <!-- /.error-content -->
-        </div>
-        <!-- /.error-page -->
-    </section>
-    <!-- /.content -->
+            <!-- /.error-page -->
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
 
+    <!-- footer content -->
+    <div data-th-replace="/fragment/footer :: footer-content"></div>
+    <!-- /footer content -->
+
+    <!-- Right side column. contains the logo and sidebar -->
+    <!-- Control Sidebar -->
+    <div data-th-replace="/fragment/right_sidemenu :: right_sidemenu-content"></div>
+    <!-- /.control-sidebar -->
+
+    <!-- Add the sidebar's background. This div must be placed immediately after the control sidebar -->
+    <div class="control-sidebar-bg"></div>
 </div>
-<!-- /.content-wrapper -->
+<!-- ./wrapper -->
 
 <div data-th-replace="/fragment/js_imports :: js-content"></div>
 </body>
 </html>
+
+
+
+
+
+

@@ -5564,3 +5564,12 @@ hr {
   clear: both;
   zoom: 1;
 }
+
+
+
+.profile-container{
+  margin: auto;
+  width: 50%;
+  /*border: 3px solid green;*/
+  padding: 10px;
+}

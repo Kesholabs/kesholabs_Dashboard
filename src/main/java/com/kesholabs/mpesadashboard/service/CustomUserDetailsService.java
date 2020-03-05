@@ -1,9 +1,9 @@
 package com.kesholabs.mpesadashboard.service;
 
-import com.kesholabs.mpesadashboard.entity.Dashboard_RolesEntity;
-import com.kesholabs.mpesadashboard.entity.Dashboard_UsersEntity;
-import com.kesholabs.mpesadashboard.repo.Dashboard_RolesRepo;
-import com.kesholabs.mpesadashboard.repo.Dashboard_UsersRepo;
+import com.kesholabs.mpesadashboard.entity.Kesho.Dashboard_RolesEntity;
+import com.kesholabs.mpesadashboard.entity.Kesho.Dashboard_UsersEntity;
+import com.kesholabs.mpesadashboard.repo.Kesho.Dashboard_RolesRepo;
+import com.kesholabs.mpesadashboard.repo.Kesho.Dashboard_UsersRepo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,13 +43,14 @@ public class CustomUserDetailsService implements UserDetailsService {
     }
 
     public void saveUser(Dashboard_UsersEntity user) {
-        logger.info("Creating user");
+        logger.info("Creating user \n"+user.toString());
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         user.setActive(true);
-        Dashboard_RolesEntity userRole = dashboard_rolesRepo.findByRole("ADMIN");
+        Dashboard_RolesEntity userRole = dashboard_rolesRepo.findByRole(user.getDepartment());
         user.setRoles(new HashSet<Dashboard_RolesEntity>(Arrays.asList(userRole)));
         user.setDate(formattedDate);
         dashboard_usersRepo.save(user);
+        logger.info("\n====== DONE CREATING USER ======\n"+user.toString());
     }
 
     @Override
