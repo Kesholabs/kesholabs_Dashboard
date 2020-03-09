@@ -55,7 +55,7 @@ public class MpesaController {
         mv.addObject("aionbalance",account_aionDaoImpl.getAionBalance());
         mv.addObject("aionspent",account_aionDaoImpl.getAionSpent());
         mv.addObject("currentUser", user);
-        mv.addObject("fullName", "Welcome " + user.getUsername());
+        mv.addObject("username", user.getUsername());
         mv.addObject("date", user.getDate());
         mv.addObject("adminMessage", "Content Available Only for Users with Admin Role");
         return mv;

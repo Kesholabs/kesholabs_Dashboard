@@ -61,7 +61,7 @@ public class WavuController {
         mv.addObject("aionbalance",formatNumber(account_aionDaoImpl.getAionBalance()));
         mv.addObject("aionspent",formatNumber(account_aionDaoImpl.getAionSpent()));
 //        mv.addObject("currentUser", user);
-//        mv.addObject("fullName", "Welcome "+user.getUsername());
+        mv.addObject("username", user.getUsername());
 //        mv.addObject("date", user.getDate());
         mv.addObject("adminMessage", "Content Available Only for Users with Admin Role");
         return mv;

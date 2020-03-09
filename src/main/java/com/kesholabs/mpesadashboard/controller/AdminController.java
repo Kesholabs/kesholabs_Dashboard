@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
+@SessionAttributes("username")
 public class AdminController {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -36,6 +37,7 @@ public class AdminController {
             Dashboard_UsersEntity user = dashboard_usersRepo.findByEmail(currentUserName);
             logger.info("Current User "+currentUserName);
             mv.addObject("currentUser", user);
+            mv.addObject("username", username);
             mv.addObject("role", user.getRoles().toString());
             return mv;
         }

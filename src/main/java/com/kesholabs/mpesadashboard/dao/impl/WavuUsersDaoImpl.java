@@ -1,6 +1,6 @@
 package com.kesholabs.mpesadashboard.dao.impl;
 
-import com.kesholabs.mpesadashboard.dao.Wavu_UsersDao;
+import com.kesholabs.mpesadashboard.dao.Wavu.Wavu_UsersDao;
 import com.kesholabs.mpesadashboard.entity.Wavu.WavuUsersEntity;
 import com.kesholabs.mpesadashboard.repo.Wavu.WavuUsersRepo;
 import org.slf4j.Logger;

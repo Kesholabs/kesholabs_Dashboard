@@ -1,4 +1,4 @@
-package com.kesholabs.mpesadashboard.dao;
+package com.kesholabs.mpesadashboard.dao.Wavu;
 
 import com.kesholabs.mpesadashboard.entity.Wavu.WavuUsersEntity;
 import org.springframework.data.domain.Page;

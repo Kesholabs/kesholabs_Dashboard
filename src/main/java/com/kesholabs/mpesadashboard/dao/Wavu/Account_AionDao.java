@@ -1,4 +1,4 @@
-package com.kesholabs.mpesadashboard.dao;
+package com.kesholabs.mpesadashboard.dao.Wavu;
 
 public interface Account_AionDao {
     double getAionBalance();
