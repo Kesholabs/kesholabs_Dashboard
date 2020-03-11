@@ -3,8 +3,15 @@ $(document).ready(function () {
     $.ajax({
         type: "GET",
         url: "http://34.83.183.132:3111/api/v1/admin/generatedTicket",
-        beforeSend: function(){
-            $(".spinner").html("<img>");
+        beforeSend: function () {
+            $("#loader").html("<img src=/static/dist/img/loader.gif>");
+            $("#loader1").html("<img src=/static/dist/img/loader.gif>");
+            $("#loader2").html("<img src=/static/dist/img/loader.gif>");
+            $("#loader3").html("<img src=/static/dist/img/loader.gif>");
+            $("#loader4").html("<img src=/static/dist/img/loader.gif>");
+            $("#loader5").html("<img src=/static/dist/img/loader.gif>");
+            $("#loader6").html("<img src=/static/dist/img/loader.gif>");
+            $("#loader7").html("<img src=/static/dist/img/loader.gif>");
             // $("#generatedTickets").hide();
             // $("#ungeneratedTickets").hide();
             // $("#mpesa").hide();
@@ -15,9 +22,16 @@ $(document).ready(function () {
             // $("#undelivered").hide();
         },
         success: function (data, textStatus) {
-            $(".spinner").hide();
             console.log("Status " + textStatus + " DATA ", data)
             if (textStatus === "success") {
+                $("#loader").hide();
+                $("#loader1").hide();
+                $("#loader2").hide();
+                $("#loader3").hide();
+                $("#loader4").hide();
+                $("#loader5").hide();
+                $("#loader6").hide();
+                $("#loader7").hide();
                 const tickets = data.message;
                 let count = 0;
 
@@ -34,13 +48,13 @@ $(document).ready(function () {
                 let undeliveredCount = 0;
 
                 tickets.forEach((tic) => {
-                    console.log(count++)
-                    console.log("ticket ", tic)
+                    // console.log(count++)
+                    // console.log("ticket ", tic)
 
                     //GENERATED TICKETS
                     if (tic.paymentStatus) {
                         console.log("generated Ticket", genticketCount++)
-                    }else{
+                    } else {
                         console.log("ungenerated Ticket", ungenticketCount++)
                     }
 
@@ -79,5 +93,55 @@ $(document).ready(function () {
                 $("#undelivered").text(undeliveredCount);
             }
         }
+    });
+
+    $("#example1").DataTable({
+        'responsive': true,
+        "processing": true,
+        "serverSide": true,
+        "paging": true,
+        "searching": { "regex": true },
+        "pagingType": "full_numbers_no_ellipses",
+        "ajax": {
+            "url": "http://34.83.183.132:3111/api/v1/admin/generatedTicket",
+            "type": "GET",
+            "dataSrc": function (data) {
+                return data.message;
+            }
+        },
+        "columns": [
+            {"data": "deliverToPhone"},
+            {"data": "amount"},
+            {"data": "paymentMode"},
+            {"data": "paymentStatus"},
+            {"data": "isDelivered"},
+            {"data": "msg"},
+            {"data": "pdfLocation"},
+            {"data": "dateCreated"}
+        ],
+        'scrollCollapse': true,
+        'ordering': true,
+        "order": [0, "asc"],
+        "lengthMenu": [[5, 10, 20, -1], [5, 10, 20, "All"]],
+        "pageLength": 10,
+        dom: 'Bfrtip',
+        buttons: [
+            'copyHtml5',
+            'excelHtml5',
+            'csvHtml5',
+            'pdfHtml5',
+            'print'
+        ],
+        "columnDefs": [
+            {
+                "targets": [1],
+                "visible": false,
+                "searchable": false
+            },
+            {
+                "targets": [2],
+                "visible": false
+            }
+        ],
     });
 });

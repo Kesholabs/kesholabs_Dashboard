@@ -9,6 +9,7 @@ import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -40,6 +41,20 @@ public class AdminController {
             mv.addObject("username", username);
             mv.addObject("role", user.getRoles().toString());
             return mv;
+        }
+        return mv;
+    }
+
+
+    @RequestMapping(value = "/adm/manageusers", method = RequestMethod.GET)
+    @ResponseBody
+    public ModelAndView manageUsers() {
+        ModelAndView mv = new ModelAndView( "Roles/roles");
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (!(authentication instanceof AnonymousAuthenticationToken)) {
+            String currentUserName = authentication.getName();
+            Dashboard_UsersEntity user = dashboard_usersRepo.findByEmail(currentUserName);
+            mv.addObject("username", user.getUsername());
         }
         return mv;
     }

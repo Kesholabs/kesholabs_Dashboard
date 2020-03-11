@@ -8,9 +8,11 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
+//@SessionAttributes("username")
 @RequestMapping(path = "/ticket/dashboard")
 public class TicketController {
     @Autowired
@@ -21,6 +23,7 @@ public class TicketController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Dashboard_UsersEntity user = userService.findUserByEmail(auth.getName());
         ModelAndView mv = new ModelAndView("Ticket/ticket");
+        mv.addObject("username", user.getUsername());
         mv.addObject("allusers", "");
         return mv;
     }

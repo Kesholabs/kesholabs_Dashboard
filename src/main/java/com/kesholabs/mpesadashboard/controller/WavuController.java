@@ -23,6 +23,7 @@ import java.util.Date;
 import java.util.Locale;
 
 @Controller
+@SessionAttributes("username")
 @RequestMapping(path = "/wavu/dashboard")
 public class WavuController {
 
